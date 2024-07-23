@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <h1>Hello, World!</h1> // JSX 語法
+    <></> // Fragment 標籤
   );
 }
 
