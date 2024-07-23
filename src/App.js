@@ -1,95 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';  // 8. 表單提交
+import styles from './App.module.css'; // 3. CSS 模組，需創建一個檔案App.module.css
+import styled from 'styled-components'; // 4. CSS-in-JS，要安裝第三方庫，如npm install styled-components
 
-// 1. 變量
-const nameVariable = 'You';
 
-// 2. 函數調用
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
-const user = {
-  firstName: 'A',
-  lastName: 'L'
-};
-
-// 3. 條件渲染
-const isLoggedIn = true;
-
-// 4. 列表渲染
-const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) =>
-  <li key={number.toString()}>{number}</li>
-);
-
-// 5. 邏輯運算符
-const unreadMessages = ['React', 'Re: React', 'Re:Re: React'];
-
-// 6. 屬性使用大括號
-const title = 'Hello, World!';
-
-// 7. 樣式和類名
+// 2. 內聯樣式
 const style = {
-  backgroundColor: 'blue',
-  color: 'white'
+  color: 'green',
+  marginLeft: '20px'
 };
-const isActive = true;
-const className = isActive ? 'active' : 'inactive';
+
+// 4. CSS-in-JS
+// 定義一個名為 Title 的 styled component
+const Title = styled.h1`
+  color: blue;
+  background-color: lightgray;
+`;
 
 function App() {
-  // 8. 表單提交
-  const [name, setName] = useState('');
-
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    alert('A name was submitted: ' + name);
-    event.preventDefault();
-  };
-
   return (
-    <div>
-      {/* 1. 變量 */}
-      <h1>Hello, {nameVariable}!</h1>
+    <div className="App">
+    {/* 1. 引用 CSS 文件，參檔案 App.css */}
+      <h1 className="green">1. 引用 CSS 文件</h1>
 
-      {/* 2. 函數調用 */}
-      <h1>Hello, {formatName(user)}!</h1>
+    {/* 2. 內聯樣式 */}
+    <div style={style}>2. 內聯樣式_引用變數</div>
+    <div style={{ color: 'orange' }}>2. 內聯樣式</div>
 
-      {/* 3. 條件渲染 */}
-      {isLoggedIn ? <h1>歡迎</h1> : <h1>登入</h1>}
-
-      {/* 4. 列表渲染 */}
-      <ul>{listItems}</ul>
-
-      {/* 5. 邏輯運算符 */}
-      <h1>Hello!</h1>
-      {unreadMessages.length > 0 &&
-        <h2>
-          You have {unreadMessages.length} unread messages.
-        </h2>
-      }
-
-      {/* 6. 屬性使用大括號 */}
-      <h1 title={title}>Welcome</h1>
-
-      {/* 7. 樣式和類名 */}
-      <div>
-        <h1 style={style}>Hello, World!</h1>
-        <div className={className}>Content</div>
+    {/* 3. CSS 模組 */}
+      <div className={styles.green}>
+        <h1>3. CSS 模組</h1>
       </div>
 
-      {/* 8. 表單提交 */}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+    {/* 4. CSS-in-JS */}
+    <Title>Hello, world!</Title>
     </div>
+
   );
 }
 
